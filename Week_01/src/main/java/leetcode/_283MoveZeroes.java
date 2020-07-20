@@ -3,6 +3,8 @@ package leetcode;
 import org.junit.Test;
 import util.PrintUtil;
 
+import java.util.Collections;
+
 /**
  * ClassName:MoveZeroes
  * Package:leetcode

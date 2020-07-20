@@ -14,7 +14,6 @@ public class ListNode {
                sb.append(" ");
                sb.append(next.val);
                next = next.next;
-
           }
           return sb.toString();
      }

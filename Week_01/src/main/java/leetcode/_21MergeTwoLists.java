@@ -32,6 +32,23 @@ public class _21MergeTwoLists {
         }
     }
 
+    public ListNode mergeTwoLists2 (ListNode l1, ListNode l2) {
+        ListNode prehead = new ListNode(-1);
+        ListNode index = prehead;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                index.next = l1;
+                l1 = l1.next;
+            } else {
+                index.next = l2;
+                l2 = l2.next;
+            }
+            index = index.next;
+        }
+        index.next = l1 == null ? l2 : l1;
+        return prehead.next;
+    }
+
     @Test
     public void solution() {
         ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(4, null)));

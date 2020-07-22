@@ -18,22 +18,25 @@
 - 位运算 Bitwise, 布隆过滤器 BloomFilter
 - LRU Cache 
 
-
-
-## 算法 
+## 算法
 
 - If-else, switch —> branch
+
 - for, while loop —> Iteration  
+
 - 递归 Recursion (Divide & Conquer, Backtrace) 
+
 - 搜索 Search: 深度优先搜索 Depth first search, 广度优先搜索 Breadth first search, A*, etc
+
 - 动态规划 Dynamic Programming  
+
 - 二分查找 Binary Search 
+
 - 贪心 Greedy 
+
 - 数学 Math , 几何 Geometry 
-
- 注意：在头脑中回忆上面每种算法的思想和代码模板 
-
-
+  
+  注意：在头脑中回忆上面每种算法的思想和代码模板 
 
 ## 五毒神掌
 
@@ -63,8 +66,6 @@
 
 PS: 拆分知识点、刻意练习、反馈 
 
-
-
 ## 懵逼的时候
 
 1.暴力？ 基本情况
@@ -72,8 +73,6 @@ PS: 拆分知识点、刻意练习、反馈
 if else for while recursion
 
 2.找 最近 重复 子问题
-
-
 
 ## Array 实战题目
 
@@ -94,8 +93,6 @@ if else for while recursion
 - [环形链表 II](https://leetcode.com/problems/linked-list-cycle-ii)
 
 - [K 个一组翻转链表](https://leetcode.com/problems/reverse-nodes-in-k-group/)（字节跳动、猿辅导在半年内面试常考）
-
-  
 
 ---
 
@@ -119,8 +116,6 @@ if else for while recursion
 说明：改写代码和分析源码这两项作业，同学们需要在第 1 周的学习总结中完成。如果不熟悉 Java 语言，这两项作业可选做。
 
 ---
-
-
 
 ## 本周作业
 

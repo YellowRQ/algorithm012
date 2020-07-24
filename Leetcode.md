@@ -10,6 +10,8 @@
 
 3.数组双指针，可以是快慢指针的情况。也可以是双指针在数组左右两边夹逼的这种情况，通常数组是排序的，排好序后，这两个指针他所指向的数的值加在一起表示它的sum，如果sum过小-->左指针右移、右指针左移
 
+[养成收藏精选代码的习惯（示例）](http://shimo.im/docs/R6g9WJV89QkHrDhr)
+
 ---
 
 ## 一、数组
@@ -688,6 +690,8 @@ public ListNode detectCycle(ListNode head) {
 - 你的算法只能使用常数的额外空间。
 - **你不能只是单纯的改变节点内部的值**，而是需要实际进行节点交换。
 
+![img](https://pic.leetcode-cn.com/866b404c6b0b52fa02385e301ee907fc015742c3766c80c02e24ef3a8613e5ad-k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.png)
+
 ```java
 public ListNode reverseKGroup(ListNode head, int k) {
     if (head == null || head.next == null){
@@ -768,11 +772,17 @@ public ListNode reverse(ListNode head) {
 
 ### 1.用 add first 或 add last 这套新的 API 改写 Deque 的代码
 
+
+
 ### 2.分析 Queue 和 Priority Queue 的源码
+
+
 
 ### 3.设计循环双端队列
 
 [设计循环双端队列](https://leetcode.com/problems/design-circular-deque)（Facebook 在 1 年内面试中考过）
+
+
 
 ## 实战题目
 
@@ -780,63 +790,354 @@ public ListNode reverse(ListNode head) {
 
 [柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram)（亚马逊、微软、字节跳动在半年内面试中考过）
 
+
+
 ### 2.滑动窗口最大值
 
 [滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum)（亚马逊在半年内面试常考）
+
+
 
 ### 3.接雨水
 
 [接雨水](https://leetcode.com/problems/trapping-rain-water/)（亚马逊、字节跳动、高盛集团、Facebook 在半年内面试常考）
 
-## 下周预习
 
-### 预习题目：
 
-- [有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/description/)
-- [二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
-- [最小的 k 个数](
-
----
-
----
-
-## 参考链接
+## 五、哈希表
 
 - [Java Set 文档](http://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/Set.html)
 - [Java Map 文档](http://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/Map.html)
 
-## 课后作业
+ HashMap 的小总结
 
-写一个关于 HashMap 的小总结。
-说明：对于不熟悉 Java 语言的同学，此项作业可选做。
 
-## 实战题目 / 课后作业
 
-- [有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/description/)（亚马逊、Facebook、谷歌在半年内面试中考过）
-- [字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/)（亚马逊在半年内面试中常考）
-- [两数之和](https://leetcode-cn.com/problems/two-sum/description/)（亚马逊、字节跳动、谷歌、Facebook、苹果、微软、腾讯在半年内面试中常考）
+### 1.有效的字母异位词
 
-## 参考链接
+[有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/description/)
 
-- [养成收藏精选代码的习惯（示例）](http://shimo.im/docs/R6g9WJV89QkHrDhr)
 
-## 参考链接
 
-- [二叉搜索树 Demo](https://visualgo.net/zh/bst)
+### 2.字母异位词分组
 
-## 思考题
+[字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/)
 
-树的面试题解法一般都是递归，为什么？
-说明：同学们可以将自己的思考写在课程下方的留言区一起讨论，也可以写在第 2 周的学习总结中。
 
-## 参考链接
 
-- [树的遍历 Demo](https://visualgo.net/zh/bst)
+## 六、树
 
-## 实战题目 / 课后作业
+[二叉搜索树 Demo](https://visualgo.net/zh/bst)
 
-- [二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)（亚马逊、微软、字节跳动在半年内面试中考过）
-- [二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)（谷歌、微软、字节跳动在半年内面试中考过）
-- [N 叉树的后序遍历](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/)（亚马逊在半年内面试中考过）
-- [N 叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/description/)（亚马逊在半年内面试中考过）
-- [N 叉树的层序遍历](https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/)
+递归遍历:
+
+- 前序遍历:打印-左-右
+- 中序遍历:左-打印-右
+- 后序遍历:左-右-打印
+
+### 思考：树的面试题解法一般都是递归，为什么？
+
+首先可以使用递归来解决的问题，一般具有如下特点：
+
+- 该问题可以被分解成若干个重复的子问题；
+- 该问题与它分解出的子问题可以使用相同的算法来解决；
+- 有明确的终止条件 树这种数据结构的特点和上述三个特点高度一致，一棵树的每个非叶子节点的子节点也都是一棵树，都是树自然可以使用相同的算法来处理，因为没有环所以天然具有终止条件。
+- 另外一方面，树本身是一种非线性的数据结构，循环遍历不易。当然循环遍历也是可以做，树是一种特殊的图，我们完全可以使用图的广度优先遍历算法一层一层的循环遍历整棵树。
+- 综上，我们一般还是选择递归的方式来解决树的问题。
+
+---
+
+### 1.二叉树的中序遍历
+
+[94二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)（亚马逊、微软、字节跳动在半年内面试中考过）
+
+|  Category  |   Difficulty    | Likes | Dislikes |
+| :--------: | :-------------: | :---: | :------: |
+| algorithms | Medium (72.06%) |  591  |    -     |
+
+给定一个二叉树，返回它的*中序* 遍历。
+
+**示例:**
+
+```
+输入: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+
+输出: [1,3,2]
+```
+
+**进阶:** 递归算法很简单，你可以通过迭代算法完成吗？
+
+第一种解法递归：
+
+​	终止条件:当前节点为空时
+​	函数内: 递归的调用左节点，打印当前节点，再递归调用右节点
+
+​	时间复杂度:O(n)
+​	空间复杂度:O(h)，h是树的高度
+
+```java
+public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    inOrder(root, res);
+    return res;
+}
+
+private void inOrder(TreeNode root, List<Integer> res) {
+    if (root == null) {
+        return;
+    }
+    inOrder(root.left, res);
+    res.add(root.val);
+    inOrder(root.right, res);
+}
+```
+
+
+
+第二种解法栈迭代：
+
+```java
+public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    Stack<TreeNode> stack = new Stack<>();
+    while (stack.size() > 0 || root != null) {
+        //不断往左子树方向走，每走一次就将当前节点保存到栈中
+		//这是模拟递归的调用
+        if (root != null) {
+            stack.push(root);
+            root = root.left;
+        //当前节点为空，说明左边走到头了，从栈中弹出节点并保存
+        //然后转向右边节点，继续上面整个过程
+        } else {
+            TreeNode tmp = stack.pop();
+            res.add(tmp.val);
+            root = tmp.right;
+        }
+    }
+    return res;
+}
+```
+
+
+
+
+
+### 2.二叉树的前序遍历
+
+[二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
+
+|  Category  |   Difficulty    | Likes | Dislikes |
+| :--------: | :-------------: | :---: | :------: |
+| algorithms | Medium (66.04%) |  318  |    -     |
+
+给定一个二叉树，返回它的 *前序* 遍历。
+
+ **示例:**
+
+```
+输入: [1,null,2,3]  
+   1
+    \
+     2
+    /
+   3 
+
+输出: [1,2,3]
+```
+
+**进阶:** 递归算法很简单，你可以通过迭代算法完成吗？
+
+
+
+1.递归
+
+```java
+public List<Integer> preorderTraversal(TreeNode root) {
+    List<Integer> resList = new ArrayList<>();
+    preOrder(resList,root);
+    return resList;
+}
+
+private void preOrder(List<Integer> resList, TreeNode root) {
+    if (root == null) {
+        return;
+    }
+    resList.add(root.val);
+    preOrder(resList, root.left);
+    preOrder(resList, root.right);
+}
+```
+
+
+
+2.栈迭代
+
+```java
+public List<Integer> preorderTraversal(TreeNode root) {
+    List<Integer> resList = new ArrayList<>();
+    Stack<TreeNode> stack = new Stack<>();
+    while (root != null || !stack.isEmpty()) {
+        if (root != null) {
+            resList.add(root.val);
+            stack.push(root);
+            root = root.left;
+        } else {
+            root = stack.pop().right;
+        }
+    }
+    return resList;
+}
+```
+
+
+
+---
+
+### 3.二叉树的后序遍历
+
+[145二叉树的后序遍历](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/description/)
+
+|  Category  |  Difficulty   | Likes | Dislikes |
+| :--------: | :-----------: | :---: | :------: |
+| algorithms | Hard (71.93%) |  350  |    -     |
+
+给定一个二叉树，返回它的 *后序* 遍历。
+
+**示例:**
+
+```
+输入: [1,null,2,3]  
+   1
+    \
+     2
+    /
+   3 
+
+输出: [3,2,1]
+```
+
+**进阶:** 递归算法很简单，你可以通过迭代算法完成吗？
+
+1.递归
+
+```java
+public List<Integer> postorderTraversal(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    postOrder(root, res);
+    return res;
+}
+
+private void postOrder(TreeNode root, List<Integer> res) {
+    if (root == null) {
+        return;
+    }
+    postOrder(root.left, res);
+    postOrder(root.right, res);
+    res.add(root.val);
+}
+```
+
+2.栈迭代
+
+```java
+public List<Integer> postorderTraversal(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    Stack<TreeNode> stack = new Stack<>();
+    TreeNode last = null;
+    while (root != null || !stack.isEmpty()){
+        while (root != null) {
+            stack.push(root);
+            root = root.left;
+        }
+        root = stack.peek();
+        if (root.right == null || root.right == last){// 右孩子为空或者访问过了
+            res.add(root.val); 
+            stack.pop();
+            last = root;
+            root = null;
+        } else {
+            root = root.right;
+        }
+    }
+    return res;
+}
+```
+
+
+
+
+
+### 4.二叉树的层序遍历
+
+[105二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/description/)
+
+|  Category  |   Difficulty    | Likes | Dislikes |
+| :--------: | :-------------: | :---: | :------: |
+| algorithms | Medium (63.06%) |  569  |    -     |
+
+给你一个二叉树，请你返回其按 **层序遍历** 得到的节点值。 （即逐层地，从左到右访问所有节点）。
+
+**示例：**
+二叉树：`[3,9,20,null,null,15,7]`,
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+返回其层次遍历结果：
+
+```
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+```
+
+------
+
+
+
+
+
+
+
+### 5.N 叉树的中序遍历
+
+[N 叉树的后序遍历](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/)（亚马逊在半年内面试中考过）
+
+
+
+### 6.N 叉树的后序遍历
+
+[N 叉树的后序遍历](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/)（亚马逊在半年内面试中考过）
+
+
+
+### 7.N 叉树的前序遍历
+
+[N 叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/description/)（亚马逊在半年内面试中考过）
+
+
+
+### 7.N 叉树的层序遍历
+
+[N 叉树的层序遍历](https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/)
+
+
+
+
+
+
+
+
+

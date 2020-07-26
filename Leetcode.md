@@ -764,9 +764,13 @@ public ListNode reverse(ListNode head) {
 
 [有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
 
+
+
 ### 2.最小栈
 
 [最小栈](https://leetcode-cn.com/problems/min-stack/)（亚马逊在半年内面试常考）
+
+
 
 ## 四、队列
 
@@ -1137,7 +1141,553 @@ public List<Integer> postorderTraversal(TreeNode root) {
 
 
 
+----
+
+
+
+## 七、堆
+
+HeapSort ：自学 https://www.geeksforgeeks.org/heap-sort/
+
+![20190624173156.jpg](https://pic.leetcode-cn.com/cde64bf682850738153e6c76dd3f6fb32201ce3c73c23415451da1eead9eb7cb-20190624173156.jpg)
+
+### 1.最小的k个数
+
+[最小的 k 个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/)（字节跳动在半年内面试中考过）
+
+输入整数数组 `arr` ，找出其中最小的 `k` 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。
+
+**示例 1：**
+
+```
+输入：arr = [3,2,1], k = 2
+输出：[1,2] 或者 [2,1]
+```
+
+**示例 2：**
+
+```
+输入：arr = [0,1,2,1], k = 1
+输出：[0]
+```
+
+**限制：**
+
+- `0 <= k <= arr.length <= 10000`
+- `0 <= arr[i] <= 10000`
+
+
+
+方法1：排序
+
+- 时间复杂度：O*(*NlogN)，其中 *n* 是数组 `arr` 的长度。算法的时间复杂度即排序的时间复杂度。
+
+- 空间复杂度：O(logN)
+
+```java
+public int[] getLeastNumbers(int[] arr, int k) {
+    if (arr == null || arr.length == 0 || k == 0) {
+        return new int[0];
+    }
+    Arrays.sort(arr);
+    return Arrays.copyOfRange(arr, 0, k);
+}
+```
+
+
+
+方法2：堆 -----PriorityQueue小根堆
+
+- 时间复杂度：O*(*NlogK)
+
+```java
+public int[] getLeastNumbers2(int[] arr, int k) {
+    PriorityQueue<Integer> heap = new PriorityQueue<>();
+    for (int i = 0; i < arr.length; i++) {
+        heap.add(arr[i]);
+    }
+    int[] ans = new int[k];
+    for (int i = 0; i < k; i++) {
+        ans[i] = heap.poll();
+    }
+    return ans;
+}
+```
+
+```java
+ public int[] getLeastNumbers3(int[] arr, int k) {
+     // 默认是小根堆，实现大根堆需要重写一下比较器。
+     Queue<Integer> heap = new PriorityQueue<>((v1, v2) -> v2 - v1);
+     for (int num: arr) {
+         if (heap.size() < k) {
+             heap.offer(num);
+         } else if (num < heap.peek()) {
+             heap.poll();
+             heap.offer(num);
+         }
+     }
+     return  heap.stream().mapToInt(Integer::intValue).toArray();
+ }
+```
+
+
+
+快排
+
+### 2.滑动窗口最大值
+
+[滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)（亚马逊在半年内面试中常考）
+
+给定一个数组 *nums*，有一个大小为 *k* 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 *k* 个数字。滑动窗口每次只向右移动一位。
+
+返回滑动窗口中的最大值。
+
+**进阶：**你能在线性时间复杂度内解决此题吗？
+
+**示例:**
+
+```
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7] 
+解释: 
+
+  滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+```
+
+**提示：**
+
+- `1 <= nums.length <= 10^5`
+- `-10^4 <= nums[i] <= 10^4`
+- `1 <= k <= nums.length`
+
+
+
+解法1：堆
+
+因为在最大堆中 heap[0] 永远是最大的元素。在大小为 k 的堆中插入一个元素消耗log(k) 时间，因此算法的时间复杂度为O(Nlog(k))
+
+```java
+public int[] maxSlidingWindow(int[] nums, int k) {
+    if (nums.length == 0 || k ==0) {
+        return new int[0];
+    }
+    int[] result = new int[nums.length - k + 1];
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> (o2 - o1));
+    for (int i = 0; i < nums.length; i++) {
+        int start = i - k;
+        if (start >= 0) {
+            maxHeap.remove(nums[start]);
+        }
+        maxHeap.offer(nums[i]);
+        if (maxHeap.size() == k) {
+            result[i - k + 1] = maxHeap.peek();
+        }
+    }
+    return result;
+}
+```
 
 
 
 
+
+解法2：双端队列
+
+- 时间复杂度*O*(*n*∗*k*)
+
+- 双链表的头尾两端都能在 O(1)的时间内进行数据的查看、添加和删除。
+
+![图片.png](https://pic.leetcode-cn.com/87ddefd7cdbdc37b5e04b58f7307a8999ada9c48af0e31674b779693fde76240-%E5%9B%BE%E7%89%87.png)
+
+- 与队列相似，我们可以利用一个双链表实现双端队列。双端队列最常用的地方就是实现一个长度动态变化的窗口或者连续区间，而动态窗口这种数据结构在很多题目里都有运用。
+
+**思路：**遍历数组，将数存放在双向队列中，并用L,R来标记窗口的左边界和右边界。队列中保存的并不是真的数，而是该数值对应的数组下标位置，并且数组中的数要从大到小排序。如果当前遍历的数比队尾的值大，则需要弹出队尾值，直到队列重新满足从大到小的要求。刚开始遍历时，L和R都为0，有一个形成窗口的过程，此过程没有最大值，L不动，R向右移。当窗口大小形成时，L和R一起向右移，每次移动时，判断队首的值的数组下标是否在[L,R]中，如果不在则需要弹出队首的值，当前窗口的最大值即为队首的数。
+
+```
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7]
+初始状态：L=R=0,队列:{}
+    i=0,nums[0]=1。队列为空,直接加入。队列：{1}
+    i=1,nums[1]=3。队尾值为1，3>1，弹出队尾值，加入3。队列：{3}
+    i=2,nums[2]=-1。队尾值为3，-1<3，直接加入。队列：{3,-1}。此时窗口已经形成，L=0,R=2，result=[3]
+    i=3,nums[3]=-3。队尾值为-1，-3<-1，直接加入。队列：{3,-1,-3}。
+    				队首3对应的下标为1，L=1,R=3，有效。result=[3,3]
+    i=4,nums[4]=5。队尾值为-3，5>-3，依次弹出后加入。队列：{5}。此时L=2,R=4，有效。result=[3,3,5]
+    i=5,nums[5]=3。队尾值为5，3<5，直接加入。队列：{5,3}。此时L=3,R=5，有效。result=[3,3,5,5]
+    i=6,nums[6]=6。队尾值为3，6>3，依次弹出后加入。队列：{6}。此时L=4,R=6，有效。
+    				result=[3,3,5,5,6]
+    i=7,nums[7]=7。队尾值为6，7>6，弹出队尾值后加入。队列：{7}。此时L=5,R=7，有效。
+    				result=[3,3,5,5,6,7]
+```
+
+- 通过示例发现R=i，L=k-R。由于队列中的值是从大到小排序的，所以每次窗口变动时，只需要判断队首的值是否还在窗口中就行了。
+- 解释一下为什么队列中要存放数组下标的值而不是直接存储数值，因为要判断队首的值是否在窗口范围内，由数组下标取值很方便，而由值取数组下标不是很方便。
+
+```java
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums == null || nums.length < 2) return nums;
+        // 双向队列 保存当前窗口最大值的数组位置 保证队列中数组位置的数值按从大到小排序
+        LinkedList<Integer> queue = new LinkedList();
+        // 结果数组
+        int[] result = new int[nums.length-k+1];
+        // 遍历nums数组
+        for(int i = 0;i < nums.length;i++){
+            // 保证从大到小 如果前面数小则需要依次弹出，直至满足要求
+            while(!queue.isEmpty() && nums[queue.peekLast()] <= nums[i]){
+                queue.pollLast();
+            }
+            // 添加当前值对应的数组下标
+            queue.addLast(i);
+            // 判断当前队列中队首的值是否有效
+            if(queue.peek() <= i-k){
+                queue.poll();   
+            } 
+            // 当窗口长度为k时 保存当前窗口中最大值
+            if(i+1 >= k){
+                result[i+1-k] = nums[queue.peek()];
+            }
+        }
+        return result;
+    }
+}
+```
+
+
+
+解法3：暴力法
+
+最简单直接的方法是遍历每个滑动窗口，找到每个窗口的最大值。一共有 N - k + 1 个滑动窗口，每个有 k 个元素，于是算法的时间复杂度为 O(Nk)，表现较差。
+
+```java
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        if (n * k == 0) return new int[0];
+        
+        int [] output = new int[n - k + 1];
+        for (int i = 0; i < n - k + 1; i++) {
+            int max = Integer.MIN_VALUE;
+            for(int j = i; j < i + k; j++) 
+                max = Math.max(max, nums[j]);
+            output[i] = max;
+        }
+        return output;
+    }
+}
+```
+
+
+
+### 3.丑数
+
+[丑数](https://leetcode-cn.com/problems/chou-shu-lcof/)（字节跳动在半年内面试中考过）
+
+
+
+### 4.前K个高频元素
+
+[前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)（亚马逊在半年内面试中常考）
+
+给定一个非空的整数数组，返回其中出现频率前 **k** 高的元素。 
+
+**示例 1:**
+
+```
+输入: nums = [1,1,1,2,2,3], k = 2
+输出: [1,2]
+```
+
+**示例 2:**
+
+```
+输入: nums = [1], k = 1
+输出: [1]
+```
+
+**提示：**
+
+- 你可以假设给定的 *k* 总是合理的，且 1 ≤ k ≤ 数组中不相同的元素的个数。
+- 你的算法的时间复杂度**必须**优于 O(*n* log *n*) , *n* 是数组的大小。
+- 题目数据保证答案唯一，换句话说，数组中前 k 个高频元素的集合是唯一的。
+- 你可以按任意顺序返回答案。
+
+---
+
+**思路：**
+
+1. 因为是统计元素出现的次数，前k多的，那我们需要用maxheap来保证堆顶是次数最多的元素。
+2. 如何创建maxheap呢？我们需要比较的是每个元素的次数，也就是map中的value，但是我们不能单单只存储value，因为这样的话我们就算获得了比较大的value，那我们也不知道对应的是哪个元素。所以在这里我们要存储每一个键值对在maxheap中，但是要按照value来进行倒序排列**（非常重要）**。
+3. 创建完后，我们将统计次数加入到map中，再将一个个键值对加入到maxheap。
+4. 最终弹出前k个就ok！
+
+- 时间复杂度：我们要进行一步map的添加工作（n），而且还要进行heap的创建工作（插入消耗是log），所以最终为**O(n) = n + n \* log(k)**。
+- 空间复杂度：因为要在map中存n个元素，所以所使用的额外空间就是**O(n) = n**
+
+```java
+public int[] topKFrequent(int[] nums, int k) {
+    Map<Integer, Integer> map = new HashMap<>();
+    PriorityQueue<Map.Entry<Integer, Integer>> maxHeap
+        = new PriorityQueue<>((o1, o2) -> o2.getValue() - o1.getValue());
+    int[] result = new int[k];
+    for (int i = 0; i < nums.length; i++) {
+        map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+    }
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        maxHeap.offer(entry);
+    }
+    for (int i = 0; i < k; i++) {
+        result[i] = maxHeap.poll().getKey();
+    }
+    return result;
+}
+```
+
+
+
+## 八、图
+
+
+
+- 连通图个数：[ https://leetcode-cn.com/problems/number-of-islands/](https://leetcode-cn.com/problems/number-of-islands/)
+- 拓扑排序（Topological Sorting）：[ https://zhuanlan.zhihu.com/p/34871092](https://zhuanlan.zhihu.com/p/34871092)
+- 最短路径（Shortest Path）：Dijkstra https://www.bilibili.com/video/av25829980?from=search&seid=13391343514095937158
+- 最小生成树（Minimum Spanning Tree）：[ https://www.bilibili.com/video/av84820276?from=search&seid=17476598104352152051](https://www.bilibili.com/video/av84820276?from=search&seid=17476598104352152051)
+
+
+
+
+
+## 九、递归
+
+### 递归模版
+
+```java
+public void recur(int level, int param) {
+    // terminator
+    if (level > MAX_LEVEL) {
+        //precess result
+        return;
+    }
+    // process current logic
+    process(level, param);
+    
+    // drill down
+    recur(level: level + 1, newParam);
+    
+    //restore current status
+}
+```
+
+
+
+### 1.括号生成
+
+- [22括号生成](https://leetcode-cn.com/problems/generate-parentheses/) (字节跳动在半年内面试中考过)
+
+ 数字 *n* 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 **有效的** 括号组合。
+
+**示例：**
+
+```
+输入：n = 3
+输出：[
+       "((()))",
+       "(()())",
+       "(())()",
+       "()(())",
+       "()()()"
+     ]
+```
+
+```java
+public List<String> generateParenthesis(int n) {
+    List<String> res = new ArrayList<>();
+    generate(0,0, n, "", res);
+    return res;
+}
+
+private void generate(int left, int right, int n, String s, List<String> res) {
+    if (left == n && right == n) {
+        res.add(str);
+        return;
+    }
+    if (left < n) generate(left + 1, right, n, s + "(", res);
+    if (left > right) generate(left, right + 1, n, s + ")", res);
+}
+```
+
+---
+
+
+
+### 2.验证二叉搜索树
+
+- [98验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree)（亚马逊、微软、Facebook 在半年内面试中考过）
+
+给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+
+假设一个二叉搜索树具有如下特征：
+
+- 节点的左子树只包含**小于**当前节点的数。
+- 节点的右子树只包含**大于**当前节点的数。
+- 所有左子树和右子树自身必须也是二叉搜索树。
+
+**示例 1:**
+
+```
+输入:
+    2
+   / \
+  1   3
+输出: true
+```
+
+**示例 2:**
+
+```
+输入:
+    5
+   / \
+  1   4
+     / \
+    3   6
+输出: false
+解释: 输入为: [5,1,4,null,null,3,6]。
+     根节点的值为 5 ，但是其右子节点值为 4 。
+```
+
+---
+
+解法1：递归
+
+- 定义函数``boolean recurse(TreeNode node, int lower, int upper)``
+- 如果上下界存在，判断当前节点的值是否在界内，如果不在界内，返回false。
+  - 将当前节点的值是其左子树的值的上界（最大值）```upper```，继续对```node.left```进行递归；
+  - 将当前节点的值是其右子树的值的下界（最小值）```lower```，继续对```node.right```进行递归。
+
+```java
+public boolean isValidBST(TreeNode root) {
+    return recurse(root, null, null);
+}
+
+private boolean recurse(TreeNode node, Integer lower, Integer upper) {
+    if (node == null) {
+        return true;
+    }
+    if (lower != null && node.val <= lower) return false;
+    if (upper != null && node.val >= upper) return false;
+
+    if (!recurse(node.left, lower, node.val)) return false;
+    if (!recurse(node.right, node.val, upper)) return false;
+    return true;
+}
+```
+
+解法2：中序遍历
+
+![1595783755528](assets\1595783755528.png)
+
+- 中序遍历二叉树过程中，每个环节的最大值都小于下一个环节的节点值。
+- 递归遍历每个节点数，在每个环节中比较记录值。
+
+```java
+// 定义 pre 作为每一个环节比较的最小值。
+Integer pre = null;
+public boolean isValidBST2(TreeNode root) {
+    // 如果根节点为空，直接返回 true 。
+    if (root == null) {
+        return true;
+    }
+    // 递归优先访问左子树。
+    if (!isValidBST(root.left)) {
+        return false;
+    }
+    // 访问当前节点，有效二叉搜索树当前节点的值应该大于所有左子树的值。
+    if (pre != null && root.val <= pre) {
+        return false;
+    }
+    // 将前一环节的最大值赋值给 pre ，作为下一环节比较的最小值。
+    pre = root.val;
+    // 最后访问右子树。
+    return isValidBST(root.right);
+}
+```
+
+
+
+---
+
+
+
+
+
+- [翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/description/) (谷歌、字节跳动、Facebook 在半年内面试中考过)
+
+
+
+- [二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree)（亚马逊、微软、字节跳动在半年内面试中考过）
+- [二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree)（Facebook、字节跳动、谷歌在半年内面试中考过）
+- [二叉树的序列化与反序列化](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)（Facebook、亚马逊在半年内面试常考）
+
+
+
+
+
+- [如何优雅地计算斐波那契数列](https://time.geekbang.org/dailylesson/detail/100028406)
+
+
+
+- [二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)（Facebook 在半年内面试常考）
+- [从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal)（字节跳动、亚马逊、微软在半年内面试中考过）
+- [组合](https://leetcode-cn.com/problems/combinations/)（微软、亚马逊、谷歌在半年内面试中考过）
+- [全排列](https://leetcode-cn.com/problems/permutations/)（字节跳动在半年内面试常考）
+- [全排列 II ](https://leetcode-cn.com/problems/permutations-ii/)（亚马逊、字节跳动、Facebook 在半年内面试中考过）
+
+
+
+---
+
+
+
+## 十、分治、回溯
+
+### 1.Pow(x, n)
+
+[Pow(x, n) ](https://leetcode-cn.com/problems/powx-n/)（Facebook 在半年内面试常考）
+
+
+
+### 2.子集
+
+[子集](https://leetcode-cn.com/problems/subsets/)（Facebook、字节跳动、亚马逊在半年内面试中考过）
+
+
+
+
+### 3.多数元素
+[多数元素](https://leetcode-cn.com/problems/majority-element/description/) （亚马逊、字节跳动、Facebook 在半年内面试中考过）
+
+
+
+### 4.电话号码的字母组合
+[电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)（亚马逊在半年内面试常考）
+
+
+
+### 5.N 皇后
+[N 皇后](https://leetcode-cn.com/problems/n-queens/)（字节跳动、苹果、谷歌在半年内面试中考过）
+
+
+
+### 参考链接
+
+- [牛顿迭代法原理](http://www.matrix67.com/blog/archives/361)
+- [牛顿迭代法代码](http://www.voidcn.com/article/p-eudisdmk-zm.html)

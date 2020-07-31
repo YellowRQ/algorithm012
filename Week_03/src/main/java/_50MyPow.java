@@ -17,18 +17,41 @@
  */
 public class _50MyPow {
 
+    /**
+     * 递归 + 快速幂
+     * @param x
+     * @param n
+     * @return
+     */
     public double myPow(double x, int n) {
-        if(x == 0.0f) return 0.0d;
-        long b = n;
-        double res = 1.0;
-        if(b < 0) {
-            x = 1 / x;
-            b = -b;
+        long N = n;
+        return N > 0 ? quickMul(x, N) : 1.0 / quickMul(x, N);
+    }
+
+    private double quickMul(double x, long N) {
+        if (N == 0) {
+            return 1.0;
         }
-        while(b > 0) {
-            if((b & 1) == 1) res *= x;
-            x *= x;
-            b >>= 1;
+        double sub = quickMul(x, N / 2);
+        return N % 2 == 0 ? sub * sub : sub * sub * x;
+    }
+
+    public double myPow2(double x, int n) {
+        if (x == 0.0) {
+            return 1.0;
+        }
+        long N = n;
+        double res = 1.0;
+        if (N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
+        while (N > 0) {
+            if (N % 2 == 0) {
+                res = res * x;
+            }
+            x = x * x;
+            N  = N / 2;
         }
         return res;
     }

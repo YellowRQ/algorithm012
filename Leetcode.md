@@ -68,7 +68,7 @@ public int[] twoSum(int[] nums, int target) {
 
 说明：你不能倾斜容器，且 n 的值至少为 2。
 
-![img](https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/07/25/question_11.jpg)
+![img](Leetcode.assets/question_11.jpg)
 
 图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。
 
@@ -203,7 +203,7 @@ public class Solution {
 
 我们用 *f(x)* 表示爬到第 *x* 级台阶的方案数，考虑最后一步可能跨了一级台阶，也可能跨了两级台阶，所以我们可以列出如下式子：
 
-                                                                         *f(x) = f(x - 1) + f(x - 2)*
+ 														 *f(x) = f(x - 1) + f(x - 2)*
 
 它意味着爬到第 *x* 级台阶的方案数是爬到第 *x - 1* 级台阶的方案数和爬到第 *x - 2* 级台阶的方案数的和。
 
@@ -334,17 +334,25 @@ public List<List<Integer>> threeSum(int[] nums) {
 
 [加一](https://leetcode-cn.com/problems/plus-one/)（谷歌、字节跳动、Facebook 在半年内面试中考过）
 
+
+
 ### 7.合并两个有序数组
 
 [合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)（Facebook 在半年内面试常考）
+
+
 
 ### 8.删除排序数组中的重复项
 
 [删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)（Facebook、字节跳动、微软在半年内面试中考过）
 
+
+
 ### 9.旋转数组
 
 [旋转数组](https://leetcode-cn.com/problems/rotate-array/)（微软、亚马逊、PayPal 在半年内面试中考过）
+
+
 
 ## 二、链表
 
@@ -468,7 +476,7 @@ public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
 解答：双指针迭代
 
-![迭代.gif](https://pic.leetcode-cn.com/7d8712af4fbb870537607b1dd95d66c248eb178db4319919c32d9304ee85b602-%E8%BF%AD%E4%BB%A3.gif)
+![迭代.gif](Leetcode.assets/7d8712af4fbb870537607b1dd95d66c248eb178db4319919c32d9304ee85b602-迭代.gif)
 
 ```java
 public ListNode swapPairs(ListNode head) {
@@ -499,9 +507,7 @@ public ListNode swapPairs(ListNode head) {
 解释：链表中有一个环，其尾部连接到第二个节点。
 ```
 
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png)
-
-**示例 2：**
+![image-20200727164510311](Leetcode.assets/image-20200727164510311.png)
 
 ```
 输入：head = [1,2], pos = 0
@@ -509,7 +515,7 @@ public ListNode swapPairs(ListNode head) {
 解释：链表中有一个环，其尾部连接到第一个节点。
 ```
 
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png)
+![image-20200727164526791](Leetcode.assets/image-20200727164526791.png)
 
 **示例 3：**
 
@@ -519,7 +525,7 @@ public ListNode swapPairs(ListNode head) {
 解释：链表中没有环。
 ```
 
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
+![image-20200727164554516](Leetcode.assets/image-20200727164554516.png)
 
 解法1：快慢指针
 
@@ -586,7 +592,7 @@ public boolean hasCycle(ListNode head) {
 解释：链表中有一个环，其尾部连接到第二个节点。
 ```
 
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png)
+![image-20200727164510311](Leetcode.assets/image-20200727164510311.png)
 
 **示例 2：**
 
@@ -596,7 +602,7 @@ public boolean hasCycle(ListNode head) {
 解释：链表中有一个环，其尾部连接到第一个节点。
 ```
 
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png)
+![image-20200727164526791](Leetcode.assets/image-20200727164526791.png)
 
 **示例 3：**
 
@@ -606,7 +612,7 @@ public boolean hasCycle(ListNode head) {
 解释：链表中没有环。
 ```
 
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
+![image-20200727164554516](Leetcode.assets/image-20200727164554516.png)
 
 解法1：哈希表
 
@@ -636,7 +642,9 @@ public class Solution {
 
 解法2：Floyd 算法 快慢指针
 
-![未命名文件.png](https://pic.leetcode-cn.com/2036dfe7e991f00dfb788a9b84a17bb6fac337e81c09bdf57e683d028a6952bc-%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png)
+
+
+![image-20200727164526791](Leetcode.assets/2036dfe7e991f00dfb788a9b84a17bb6fac337e81c09bdf57e683d028a6952bc-未命名文件.png)
 
 ​    时间复杂度：O(n)
 
@@ -690,7 +698,7 @@ public ListNode detectCycle(ListNode head) {
 - 你的算法只能使用常数的额外空间。
 - **你不能只是单纯的改变节点内部的值**，而是需要实际进行节点交换。
 
-![img](https://pic.leetcode-cn.com/866b404c6b0b52fa02385e301ee907fc015742c3766c80c02e24ef3a8613e5ad-k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.png)
+![img](Leetcode.assets/866b404c6b0b52fa02385e301ee907fc015742c3766c80c02e24ef3a8613e5ad-k个一组翻转链表.png)
 
 ```java
 public ListNode reverseKGroup(ListNode head, int k) {
@@ -1149,7 +1157,7 @@ public List<Integer> postorderTraversal(TreeNode root) {
 
 HeapSort ：自学 https://www.geeksforgeeks.org/heap-sort/
 
-![20190624173156.jpg](https://pic.leetcode-cn.com/cde64bf682850738153e6c76dd3f6fb32201ce3c73c23415451da1eead9eb7cb-20190624173156.jpg)
+![20190624173156.jpg](Leetcode.assets/cde64bf682850738153e6c76dd3f6fb32201ce3c73c23415451da1eead9eb7cb-20190624173156.jpg)
 
 ### 1.最小的k个数
 
@@ -1304,7 +1312,7 @@ public int[] maxSlidingWindow(int[] nums, int k) {
 
 - 双链表的头尾两端都能在 O(1)的时间内进行数据的查看、添加和删除。
 
-![图片.png](https://pic.leetcode-cn.com/87ddefd7cdbdc37b5e04b58f7307a8999ada9c48af0e31674b779693fde76240-%E5%9B%BE%E7%89%87.png)
+![图片.png](Leetcode.assets/87ddefd7cdbdc37b5e04b58f7307a8999ada9c48af0e31674b779693fde76240-图片.png)
 
 - 与队列相似，我们可以利用一个双链表实现双端队列。双端队列最常用的地方就是实现一个长度动态变化的窗口或者连续区间，而动态窗口这种数据结构在很多题目里都有运用。
 
@@ -1627,28 +1635,45 @@ public boolean isValidBST2(TreeNode root) {
 
 
 
-
-
+### 翻转二叉树
 - [翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/description/) (谷歌、字节跳动、Facebook 在半年内面试中考过)
 
 
-
+### 二叉树的最大深度
 - [二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree)（亚马逊、微软、字节跳动在半年内面试中考过）
+
+
+### 二叉树的最小深度
 - [二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree)（Facebook、字节跳动、谷歌在半年内面试中考过）
+
+
+### 二叉树的序列化与反序列化
 - [二叉树的序列化与反序列化](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)（Facebook、亚马逊在半年内面试常考）
 
 
 
 
-
+### 如何优雅地计算斐波那契数列
 - [如何优雅地计算斐波那契数列](https://time.geekbang.org/dailylesson/detail/100028406)
 
 
-
+### 二叉树的最近公共祖先
 - [二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)（Facebook 在半年内面试常考）
+
+
+### 从前序与中序遍历序列构造二叉树
 - [从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal)（字节跳动、亚马逊、微软在半年内面试中考过）
+
+
+### 组合
 - [组合](https://leetcode-cn.com/problems/combinations/)（微软、亚马逊、谷歌在半年内面试中考过）
+
+
+### 全排列
 - [全排列](https://leetcode-cn.com/problems/permutations/)（字节跳动在半年内面试常考）
+
+
+
 - [全排列 II ](https://leetcode-cn.com/problems/permutations-ii/)（亚马逊、字节跳动、Facebook 在半年内面试中考过）
 
 
@@ -1659,31 +1684,300 @@ public boolean isValidBST2(TreeNode root) {
 
 ## 十、分治、回溯
 
+**分治算法template**
+1. terminator
+2. process (split your big problem)
+3. drill down (subproblems)
+4. merge (subresult)
+5. reverse status
+
+
+----
+
 ### 1.Pow(x, n)
 
-[Pow(x, n) ](https://leetcode-cn.com/problems/powx-n/)（Facebook 在半年内面试常考）
+[50Pow(x, n) ](https://leetcode-cn.com/problems/powx-n/)（Facebook 在半年内面试常考）
+
+|  Category  |   Difficulty    | Likes | Dislikes |
+| :--------: | :-------------: | :---: | :------: |
+| algorithms | Medium (36.08%) |  453  |    -     |
+
+实现 [pow(*x*, *n*)](https://www.cplusplus.com/reference/valarray/pow/) ，即计算 x 的 n 次幂函数。
+
+**示例 1:**
+```
+输入: 2.00000, 10
+输出: 1024.00000
+```
+**示例 2:**
+```
+输入: 2.10000, 3
+输出: 9.26100
+```
+**示例 3:**
+```
+输入: 2.00000, -2
+输出: 0.25000
+解释: 2-2 = 1/22 = 1/4 = 0.25
+```
+**说明:**
+- -100.0 < *x* < 100.0
+- *n* 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。
+----
+
+> 分治分析： x^n^ 假设是 2^10^，分解子问题 ： 2^5^  -->(2^2^) * 2
+> 	pow(x,n) :
+> 		subproblem :     subresult = pow(x, n/2)     时间复杂度为O(logN)
+> 	merge:
+> 		if (n % 2 == 1) {
+> 			result  = subresult * subresult * x;  //奇数
+> 		} else {
+> 			result = subresult * subresult;        //偶数
+> 		}
+
+解法: 递归 + 快速幂
+- 时间复杂度：O(logn)，即为递归的层数。
+- 空间复杂度：O(logn)，即为递归的层数。这是由于递归的函数调用会使用栈空间。
+```java
+//java中int类型的范围n∈[−2147483648,2147483647],如果n=−2147483648，执行-n就会出现越界，所以转为long来操作就安全了。
+public double myPow(double x, int n) {    
+    long N = n;
+    return N > 0 ? quickMul(x, N) : 1.0 / quickMul(x, N);
+}
+private double quickMul(double x, long N) {
+    if (N == 0) {
+        return 1.0;
+    }
+    double sub = quickMul(x, N / 2);
+    return N % 2 == 0 ? sub * sub : sub * sub * x;
+}
+```
 
 
 
 ### 2.子集
 
-[子集](https://leetcode-cn.com/problems/subsets/)（Facebook、字节跳动、亚马逊在半年内面试中考过）
+[78子集](https://leetcode-cn.com/problems/subsets/)（Facebook、字节跳动、亚马逊在半年内面试中考过）
+
+给定一组**不含重复元素**的整数数组 *nums*，返回该数组所有可能的子集（幂集）。
+
+**说明：**解集不能包含重复的子集。
+
+**示例:**
+
+```
+输入: nums = [1,2,3]
+输出:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+```
+
+
+
+```java
+public List<List<Integer>> subsets(int[] nums) {
+    List<List<Integer>> ans = new ArrayList<>();
+    if (nums == null) {
+        return ans;
+    }
+    dfs(ans, nums, new ArrayList<Integer>(), 0);
+    return ans;
+}
+
+private void dfs(List<List<Integer>> ans, int[] nums, ArrayList<Integer> list, int index) {
+    //terminator
+    if (index == nums.length) {
+        ans.add(new ArrayList<Integer>(list));
+        return;
+    }
+    //not pick the number at this index
+    dfs(ans, nums, list, index + 1);
+
+    //pick the number at this index
+    list.add(nums[index]);
+    dfs(ans, nums, list, index + 1);
+
+    list.remove(list.size() - 1);
+}
+```
 
 
 
 
 ### 3.多数元素
-[多数元素](https://leetcode-cn.com/problems/majority-element/description/) （亚马逊、字节跳动、Facebook 在半年内面试中考过）
+[169多数元素](https://leetcode-cn.com/problems/majority-element/description/) （亚马逊、字节跳动、Facebook 在半年内面试中考过）
+|  Category  |  Difficulty   | Likes | Dislikes |
+| :--------: | :-----------: | :---: | :------: |
+| algorithms | Easy (63.84%) |  679  |    -     |
+
+给定一个大小为 *n* 的数组，找到其中的多数元素。多数元素是指在数组中出现次数**大于** `⌊ n/2 ⌋` 的元素。
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+**示例 1:**
+```
+输入: [3,2,3]
+输出: 3
+```
+**示例 2:**
+```
+输入: [2,2,1,1,1,2,2]
+输出: 2
+```
+
+```java
+//解法1：哈希表 O(N)
+class Solution {
+    private Map<Integer, Integer> countNums(int[] nums) {
+        Map<Integer, Integer> counts = new HashMap<Integer, Integer>();
+        for (int num : nums) {
+            if (!counts.containsKey(num)) {
+                counts.put(num, 1);
+            }
+            else {
+                counts.put(num, counts.get(num)+1);
+            }
+        }
+        return counts;
+    }
+
+    public int majorityElement(int[] nums) {
+        Map<Integer, Integer> counts = countNums(nums);
+
+        Map.Entry<Integer, Integer> majorityEntry = null;
+        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+            if (majorityEntry == null || entry.getValue() > majorityEntry.getValue()) {
+                majorityEntry = entry;
+            }
+        }
+
+        return majorityEntry.getKey();
+    }
+}
+```
+
+```JAVA
+//解法2：排序 n(logn)
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length/2];
+    }
+}
+```
+
+思路：如果数 `a` 是数组 `nums` 的众数，如果我们将 `nums` 分成两部分，那么 `a` 必定是至少一部分的众数。
+
+将数组分成左右两部分，分别求出左半部分的众数 `a1` 以及右半部分的众数 `a2`，随后在 `a1` 和 `a2` 中选出正确的众数。
+
+```java
+//分治算法 O (nlogn)
+class Solution {
+    private int countInRange(int[] nums, int num, int lo, int hi) {
+        int count = 0;
+        for (int i = lo; i <= hi; i++) {
+            if (nums[i] == num) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int majorityElementRec(int[] nums, int lo, int hi) {
+        // base case; the only element in an array of size 1 is the majority
+        if (lo == hi) {
+            return nums[lo];
+        }
+
+        // recurse on left and right halves of this slice.
+        int mid = (hi-lo)/2 + lo;
+        int left = majorityElementRec(nums, lo, mid);
+        int right = majorityElementRec(nums, mid+1, hi);
+
+        // if the two halves agree on the majority element, return it.
+        if (left == right) {
+            return left;
+        }
+
+        // otherwise, count each element and return the "winner".
+        int leftCount = countInRange(nums, left, lo, hi);
+        int rightCount = countInRange(nums, right, lo, hi);
+
+        return leftCount > rightCount ? left : right;
+    }
+
+    public int majorityElement(int[] nums) {
+        return majorityElementRec(nums, 0, nums.length-1);
+    }
+}
+```
+
+```java
+//摩尔计数法 O(n)
+public int majorityElement3(int[] nums) {
+    Integer result = null;
+    int flag = 0;
+    for (int i = 0; i < nums.length; i++) {
+        if (flag == 0) {
+            result = nums[i];
+        }
+        if (nums[i] == result) {
+            flag++;
+        } else {
+            flag--;
+        }
+    }
+    return result;
+}
+```
+
+
 
 
 
 ### 4.电话号码的字母组合
-[电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)（亚马逊在半年内面试常考）
+[17电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)（亚马逊在半年内面试常考）
+
+|  Category  |   Difficulty    | Likes | Dislikes |
+| :--------: | :-------------: | :---: | :------: |
+| algorithms | Medium (53.93%) |  809  |    -     |
+
+给定一个仅包含数字 `2-9` 的字符串，返回所有它能表示的字母组合。
+
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+
+<img src="Leetcode.assets/17_telephone_keypad.png" alt="img" style="zoom:67%;" />
+
+**示例:**
+
+```
+输入："23"
+输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+```
+
+**说明:**
+尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序
+
+```java
+
+```
+
+
 
 
 
 ### 5.N 皇后
 [N 皇后](https://leetcode-cn.com/problems/n-queens/)（字节跳动、苹果、谷歌在半年内面试中考过）
+
+
+
+
 
 
 
